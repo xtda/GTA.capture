@@ -58,7 +58,6 @@ namespace GTA.capture {
 
             var date = DateTime.Now;
             var month = date.ToString("MMMM");
-            ;
             var filename = date.ToString("dd-MM-yyyy (HH-mm-ss)");
             Directory.CreateDirectory(_currentPath + "\\screenshots\\" + month);
             bmp.Save("screenshots\\" + month + "\\" + filename + ".png", ImageFormat.Png);
