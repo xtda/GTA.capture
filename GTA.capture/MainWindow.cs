@@ -14,9 +14,7 @@ namespace GTA.capture {
             InitializeComponent();
 
             Directory.CreateDirectory(_currentPath + "\\screenshots");
-
-            var screenShotHotKeyId = 0;
-            RegisterHotKey(Handle, screenShotHotKeyId, 0, Keys.F11.GetHashCode());
+            RegisterHotKey(Handle, 0, 4, Keys.F11.GetHashCode());
         }
 
         [DllImport("user32.dll")]
@@ -27,6 +25,7 @@ namespace GTA.capture {
 
         [DllImport("user32.dll")]
         private static extern IntPtr GetWindowRect(IntPtr hWnd, ref Rect rect);
+
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e) {
             UnregisterHotKey(Handle, 0);
@@ -45,22 +44,27 @@ namespace GTA.capture {
         }
 
         public void CaptureGtaScreen() {
-            var proc = Process.GetProcessesByName("notepad")[0];
+            Process fiveMProcess;
+            try {
+                fiveMProcess = Process.GetProcessesByName("notepad")[0];
+            }
+            catch (IndexOutOfRangeException) {
+                return;
+            }
             var rect = new Rect();
-            GetWindowRect(proc.MainWindowHandle, ref rect);
+            GetWindowRect(fiveMProcess.MainWindowHandle, ref rect);
 
             var width = rect.right - rect.left;
             var height = rect.bottom - rect.top;
+            var date = DateTime.Now;
+            var filename = date.ToString("dd-MM-yyyy (HH-mm-ss)");
 
             var bmp = new Bitmap(width, height, PixelFormat.Format32bppArgb);
             var graphics = Graphics.FromImage(bmp);
+
             graphics.CopyFromScreen(rect.left, rect.top, 0, 0, new Size(width, height), CopyPixelOperation.SourceCopy);
 
-            var date = DateTime.Now;
-            var month = date.ToString("MMMM");
-            var filename = date.ToString("dd-MM-yyyy (HH-mm-ss)");
-            Directory.CreateDirectory(_currentPath + "\\screenshots\\" + month);
-            bmp.Save("screenshots\\" + month + "\\" + filename + ".png", ImageFormat.Png);
+            bmp.Save("screenshots\\" + filename + ".png", ImageFormat.Png);
         }
 
         [StructLayout(LayoutKind.Sequential)]

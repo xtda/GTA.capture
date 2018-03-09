@@ -76,13 +76,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(396, 145);
+            this.ClientSize = new System.Drawing.Size(396, 0);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(412, 184);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(412, 184);
             this.Name = "MainWindow";
             this.ShowInTaskbar = false;
             this.Text = "GTA Capture";
