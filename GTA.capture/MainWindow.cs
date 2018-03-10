@@ -13,8 +13,10 @@ namespace GTA.capture {
         public MainWindow() {
             InitializeComponent();
 
+
             Directory.CreateDirectory(_currentPath + "\\screenshots");
             RegisterHotKey(Handle, 0, 4, Keys.F11.GetHashCode());
+
         }
 
         [DllImport("user32.dll")]
@@ -46,7 +48,7 @@ namespace GTA.capture {
         public void CaptureGtaScreen() {
             Process fiveMProcess;
             try {
-                fiveMProcess = Process.GetProcessesByName("FiveM")[0];
+                fiveMProcess = Process.GetProcessesByName("notepad")[0];
             }
             catch (IndexOutOfRangeException) {
                 return;
@@ -73,6 +75,11 @@ namespace GTA.capture {
             public int top;
             public int right;
             public int bottom;
+        }
+
+        private void MainWindow_Load(object sender, EventArgs e)
+        {
+            Hide();
         }
     }
 }

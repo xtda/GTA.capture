@@ -50,6 +50,9 @@
   <PropertyGroup>
     <ApplicationIcon>Resources\gtaIcon.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>GTA.capture.Program</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
