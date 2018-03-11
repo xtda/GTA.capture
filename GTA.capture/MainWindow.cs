@@ -48,7 +48,7 @@ namespace GTA.capture {
         public void CaptureGtaScreen() {
             Process fiveMProcess;
             try {
-                fiveMProcess = Process.GetProcessesByName("notepad")[0];
+                fiveMProcess = Process.GetProcessesByName("FiveM")[0];
             }
             catch (IndexOutOfRangeException) {
                 return;
